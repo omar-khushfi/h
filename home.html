@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .btn {
+            background-color: #ff69b4;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+        
+        .message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            line-height: 1.6;
+            max-width: 80%;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="showMessage()">Click Hanan</button>
+    <div id="message" class="message">
+        Hanan, I'm sorry. I know you're not a liar and I trust you very much. My view of you hasn't changed. I apologize if my way of advising you was wrong, but my intention was to advise you because I care about you. Thank you.
+    </div>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            
+            // Add click event to hide message when clicking outside
+            document.addEventListener('click', function closeMessage(e) {
+                if (!message.contains(e.target) && e.target.className !== 'btn') {
+                    message.style.display = 'none';
+                    document.removeEventListener('click', closeMessage);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
