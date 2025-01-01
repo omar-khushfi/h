@@ -1,76 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة إلى حزينة</title>
     <style>
         body {
-            background-color: #f9a7ce;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            font-size: xxx-large;
+            background-color: #ffe6f0; /* خلفية زهرية */
+            color: #d63384; /* لون النص */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
         }
-        
-        .btn {
-            background-color: #ff69b4;
+        h1 {
+            color: #c2185b;
+        }
+        button {
+            background-color: #f50057; /* لون الزر */
+            color: #fff;
             border: none;
+            border-radius: 5px;
             padding: 15px 30px;
-            border-radius: 25px;
-            color: white;
             font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
-        
-        .btn:hover {
-            background-color: #ff1493;
-            transform: scale(1.05);
+        button:hover {
+            background-color: #c51162;
         }
-        
         .message {
+            margin-top: 20px;
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
-            line-height: 1.6;
-            max-width: 80%;
-            animation: fadeIn 0.5s ease;
+            font-size: 20px;
+            color: #ad1457;
+            animation: fadeIn 1s ease-in-out;
         }
-        
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="btn" onclick="showMessage()">Click Hanan</button>
-    <div id="message" class="message">
-        Hanan, I'm sorry. I know you're not a liar and I trust you very much. My view of you hasn't changed. I apologize if my way of advising you was wrong, but my intention was to advise you because I care about you. Thank you.
+    <h1>إلى صديقتي حزينة</h1>
+    <p>اضغطي على الزر أدناه لتقرأي رسالتي لكِ.</p>
+    <button id="showMessageButton">افتحي الرسالة</button>
+    <div class="message" id="message">
+        <p>يا حزينة، ديري بالك الزعل مو عليكِ، انتِ متل الفراشة اللي بتلون كل مكان تروح عليه. <br> 
+        الحمصي بيقول: "الزعل إلو عالمه، بس عالمك إنتِ لازم يكون مليان ضحك وسعادة." <br> 
+        خلي الضحكة ما تفارقك لأن الدنيا بتحلى بابتسامتك، ولا تزعلي، أنا هون دائماً لأشوفك مبسوطة. 😊</p>
     </div>
 
     <script>
-        function showMessage() {
+        document.getElementById('showMessageButton').addEventListener('click', function () {
             const message = document.getElementById('message');
             message.style.display = 'block';
-            
-            // Add click event to hide message when clicking outside
-            document.addEventListener('click', function closeMessage(e) {
-                if (!message.contains(e.target) && e.target.className !== 'btn') {
-                    message.style.display = 'none';
-                    document.removeEventListener('click', closeMessage);
-                }
-            });
-        }
+        });
     </script>
 </body>
 </html>
