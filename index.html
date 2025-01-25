@@ -3,63 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رسالة إلى حنان</title>
+    <title>رسالة لحنان</title>
     <style>
         body {
-            background-color: #ffe6f0; /* خلفية زهرية */
-            color: #d63384; /* لون النص */
+            background-color: #ff69b4;
+            color: white;
             font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 20px;
         }
-        h1 {
-            color: #c2185b;
+
+        #message {
+            font-size: 1.5rem;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            word-wrap: break-word;
         }
+
         button {
-            background-color: #f50057; /* لون الزر */
-            color: #fff;
+            font-size: 1rem;
+            background-color: #ff1493;
+            color: white;
             border: none;
-            border-radius: 5px;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s;
         }
+
         button:hover {
-            background-color: #c51162;
+            background-color: #ff85c0;
+            transform: scale(1.1);
         }
-        .message {
-            margin-top: 20px;
-            display: none;
-            font-size: 20px;
-            color: #ad1457;
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+
+        @media (max-width: 768px) {
+            #message {
+                font-size: 1.2rem;
+                padding: 15px;
             }
-            to {
-                opacity: 1;
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>حنووونة كبريا بتكبر وصغريا بتصغر</h1>
-    <p>اضغطي على الزر لتقرأي رسالتي </p>
-    <button id="showMessageButton">افتحي الرسالة</button>
-    <div class="message" id="message">
-        <p>يا حنان، بعرف إنو كل شخص بيمر بفترات صعبة، <br>
-        بس بتمنى منك تذكري دايماً إنو في ناس حواليك بيهتموا فيك وبدهم يشوفوكِ مرتاحة. <br>
-        الضحكة أحياناً ما بتحل المشكلة، بس بتعطينا طاقة لنواجهها. <br>
-        أنا معك إذا احتجتي لأي شي، وبتمنى يومك يكون أسعد من البارحة. 😊</p>
-    </div>
+    <div id="message">السلام عليكم يا حنان 🌸</div>
+    <button id="changeMessage">اضغطي هون</button>
 
     <script>
-        document.getElementById('showMessageButton').addEventListener('click', function () {
-            const message = document.getElementById('message');
-            message.style.display = 'block';
+        const messages = [
+            " بتمنى تكون الفعالية تبعك اليوم منيحة وتبلي بلاء حسن إن شاء الله  🌟",
+            " ما بدي تكوني خجولة أو خايفة أو متلبكة، بدي تكوني قوية وتثقي بحالك   💪",
+            " قلتلك بدي تكوني قوية، اضغطي عالزر بقوة! 👍",
+            " أنا واثق بقدراتك يا حنان ومأكد انو كل شي رح يكون تمام بإذن الله  ✨",
+            " خليكي دايماً مبتسمة، الابتسامة بتعطيكي طاقة إيجابية  😊",
+            " ما تنسي إنو التعب اليوم هو طريق النجاح بكرا  🚀",
+            " كل خطوة عم تعمليها بتقربك أكتر من هدفك، لا تستسلمي  🌈",
+            " بدي ياكي دايماً تتذكري انو الله معك وما رح يتركك  🙏",
+            " كلنا منخطئ ومنتعلم، والمهم انك عم تتحسني كل يوم  🌟",
+            "بدي قلك انو قوتك بتكمن بثقتك بحالك، لا تخافي من التحديات   ❤️ ",
+           "توكلي على الله وكوني واثقة بنفسك!  🌺 "
+        ];
+
+        let currentMessage = 0;
+
+        document.getElementById('changeMessage').addEventListener('click', () => {
+            const messageDiv = document.getElementById('message');
+            if (currentMessage < messages.length) {
+                messageDiv.textContent = messages[currentMessage];
+                currentMessage++;
+            } else {
+                messageDiv.textContent ="اي حاجي شو كام رسالة بدك يعني   🙂" ;
+            }
         });
     </script>
 </body>
