@@ -3,86 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رسالة لحنان</title>
-    <style>
-        body {
-            background-color: #ff69b4;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-
-        #message {
-            font-size: 1.5rem;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            word-wrap: break-word;
-        }
-
-        button {
-            font-size: 1rem;
-            background-color: #ff1493;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        button:hover {
-            background-color: #ff85c0;
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-            #message {
-                font-size: 1.2rem;
-                padding: 15px;
-            }
-
-            button {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-            }
-        }
-    </style>
+    <title>title</title>
 </head>
-<body>
-    <div id="message">السلام عليكم يا حنان 🌸</div>
-    <button id="changeMessage">اضغطي هون</button>
-
-    <script>
-        const messages = [
-            " بتمنى تكون الفعالية تبعك اليوم منيحة وتبلي بلاء حسن إن شاء الله  🌟",
-            " ما بدي تكوني خجولة أو خايفة أو متلبكة، بدي تكوني قوية وتثقي بحالك   💪",
-            " قلتلك بدي تكوني قوية، اضغطي عالزر بقوة! 👍",
-            " أنا واثق بقدراتك يا حنان ومتأكد انو كل شي رح يكون تمام بإذن الله  ✨",
-            " خليكي دايماً مبتسمة، الابتسامة بتعطيكي طاقة إيجابية  😊",
-            " ما تنسي إنو التعب اليوم هو طريق النجاح بكرا  🚀",
-            " كل خطوة عم تعمليها بتقربك أكتر من هدفك، لا تستسلمي  🌈",
-            " بدي ياكي دايماً تتذكري انو الله معك وما رح يتركك  🙏",
-            " كلنا منخطئ ومنتعلم، والمهم انك عم تتحسني كل يوم  🌟",
-            "بدي قلك انو قوتك بتكمن بثقتك بحالك، لا تخافي من التحديات   ❤️ ",
-           " توكلي على الله وكوني واثقة بنفسك وديري بالك عحالك كتيررررر!  🌺 "
-        ];
-
-        let currentMessage = 0;
-
-        document.getElementById('changeMessage').addEventListener('click', () => {
-            const messageDiv = document.getElementById('message');
-            if (currentMessage < messages.length) {
-                messageDiv.textContent = messages[currentMessage];
-                currentMessage++;
-            } else {
-                messageDiv.textContent ="اي حاجي شو كام رسالة بدك يعني   🙂" ;
-            }
-        });
-    </script>
+   
 </body>
 </html>
