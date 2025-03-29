@@ -1,10 +1,329 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>Hanoooon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fff5f9 0%, #ffeef4 100%);
+            font-family: Helvetica, Arial, sans-serif;
+                        overflow: hidden;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            perspective: 1000px;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .envelope {
+            position: relative;
+            width: 450px;
+            height: 320px;
+            background: linear-gradient(to bottom, #ffd6e7 0%, #ffc9dd 100%);
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.4);
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 1.5);
+        }
+
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 0;
+            height: 0;
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-top: 140px solid #ffc0d5;
+            transform-origin: top;
+            transition: all 0.8s cubic-bezier(0.25, 1.7, 0.35, 1.5);
+            z-index: 3;
+            filter: drop-shadow(0 -5px 5px rgba(0,0,0,0.05));
+        }
+
+        .envelope:after {
+            content:'To the best partner';
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d45d79;
+            font-weight: 600;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .envelope:hover:after {
+            color: #b84a65;
+        }
+
+        .envelope .seal {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: #ff85a2;
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        .envelope.open .seal {
+            transform: translateX(-50%) rotate(360deg) scale(0.8);
+            opacity: 0.8;
+        }
+
+        /* Opened Envelope */
+        .envelope.open {
+            transform: translateY(20px);
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+        }
+
+        .envelope.open:before {
+            transform: rotateX(180deg);
+            filter: brightness(1.1) drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        /* Letter */
+        .letter {
+        z-index: 1;
+        position: absolute;
+        top: 162%;
+        left: 50%;
+        width: 600px;
+        padding: 40px;
+        background: #fffafc;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+        transform: translate(-50%, -20%) scale(0);
+        opacity: 0;
+        border: 2px solid #ffd6e7;
+        background-image: linear-gradient(to bottom, rgba(255, 214, 231, 0.2) 0%, transparent 20px), linear-gradient(to right, rgba(255, 214, 231, 0.2) 0%, transparent 20px);
+        background-size: 100% 30px, 30px 100%;
+        }
+
+        .letter.visible {
+            transform: translate(-50%, -110%) scale(1);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .letter-content {
+            position: relative;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .letter-text {
+            color: #8a5a6b;
+            line-height: 1.8;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .letter-text h2 {
+            color: #d45d79;
+            margin-bottom: 25px;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 32px;
+            font-weight: normal;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .letter-text p {
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .letter-text p:last-child {
+            text-align: right;
+            font-style: italic;
+            margin-top: 30px;
+            color: #ff85a2;
+            font-weight: bold;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #ffb3c6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2) rotate(90deg);
+            color: #ff85a2;
+            background: rgba(255,179,198,0.2);
+        }
+
+        /* Decorative Elements */
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* Gold Accents */
+        .gold-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(to right, transparent 0%, #e8c874 50%, transparent 100%);
+            width: 80%;
+            left: 10%;
+            top: 80px;
+            opacity: 0.5;
+        }
+
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath fill='%23e8c874' d='M0 0h10v2H0zM0 0h2v10H0zM28 0h2v10h-2zM20 0h10v2H20zM0 20h10v10H0zM0 28h2v2H0zM28 28h2v2h-2zM20 28h10v2H20z'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .corner.tl { top: 10px; left: 10px; }
+        .corner.tr { top: 10px; right: 10px; transform: rotate(90deg); }
+        .corner.bl { bottom: 10px; left: 10px; transform: rotate(270deg); }
+        .corner.br { bottom: 10px; right: 10px; transform: rotate(180deg); }
+    </style>
 </head>
-   
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="envelope-wrapper">
+        <div class="envelope" onclick="toggleEnvelope()">
+            <div class="seal">🎀</div>
+           
+        </div>
+        <div class="letter" id="letter">
+            <span class="close-btn" onclick="toggleEnvelope()">×</span>
+            <div class="gold-line"></div>
+            <div class="letter-content">
+                <div class="letter-text">
+                    <h2>Hanoniiii</h2>
+                    <p> السلام عليكم ورحمة الله وبركاته </p> <p>  كيفك حنونة كل عام وانتي بخير يارب ,ان شاء الله تكوني فرحانة ومبسوطة انا بدي اتشكرك كتير على وجودك بحياتي وانو بتساعديني وبتهتمي فيني انا كتير مقدرك انا  بحياتي كلها ما تعرفت علي حدا متلك منيح انا كتير اسف وقت كنت زعلك ودايقك انتي مالازم تزعلي ابدا وتضلي فرحانة عطول وشكرا كتير انو اخترتيني اشتغل معك ووثقتي فيني وبالاخير بدي قلك انا بتمنى ضل كل عمري معك وساعدك بكل حياتك وشاركك حياتي ونشتغل اكتر ومنتعلم من بعض اكتر لأنو انا كتير بتعلم اشياء منك انا بدي ضل ادعي انو نضل سوا وضل ادعيلك والله يرزقك اكتر وان شاء الله بترجعي عسوريا وبتتجوزي حبيبك واسف لأنو كانت الرسالة طويلة
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const letter = document.getElementById('letter');
+            
+            if (!envelope.classList.contains('open')) {
+                envelope.classList.add('open');
+                setTimeout(() => {
+                    letter.classList.add('visible');
+                }, 400);
+            } else {
+                letter.classList.remove('visible');
+                setTimeout(() => {
+                    envelope.classList.remove('open');
+                }, 600);
+            }
+        }
+
+        // Create floating decorative elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const elements = ['🌸', '✨', '🌹', '💖', '🎀', '💫'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (Math.random() * 20 + 12) + 'px';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                element.style.animationDuration = (Math.random() * 8 + 4) + 's';
+                element.style.opacity = Math.random() * 0.4 + 0.3;
+                element.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(element);
+            }
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            const letter = document.getElementById('letter');
+            if (!e.target.closest('.envelope-wrapper') && letter.classList.contains('visible')) {
+                toggleEnvelope();
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const envelope = document.querySelector('.envelope');
+                if (envelope.classList.contains('open')) {
+                    toggleEnvelope();
+                }
+            }
+        });
+
+        // Initialize floating elements
+        createFloatingElements();
+    </script>
 </body>
 </html>
