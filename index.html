@@ -1,158 +1,131 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبارات الصلاة الإسلامية</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c6e49;
-            margin-bottom: 30px;
-        }
-        .phrase-box {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .arabic {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        .translation {
-            font-size: 18px;
-            color: #7f8c8d;
-            display: none;
-            padding: 10px;
-            background-color: #e8f4ea;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        button {
-            background-color: #2c6e49;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #1d4e34;
-        }
-        .show-answer {
-            background-color: #3498db;
-        }
-        .show-answer:hover {
-            background-color: #2980b9;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Islamic Prayer Phrases</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffeef4; /* Light pink background */
+      text-align: center;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 192, 203, 0.3); /* Pink shadow */
+    }
+    h1 {
+      color: #d63384;
+      margin-bottom: 30px;
+    }
+    .phrase-box {
+      background-color: #fff0f5; /* light rose */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .arabic {
+      font-size: 24px;
+      font-weight: bold;
+      color: #b03060;
+      margin-bottom: 15px;
+    }
+    .translation {
+      font-size: 18px;
+      color: #6c757d;
+      display: none;
+      padding: 10px;
+      background-color: #fce4ec;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #ad2c6f;
+    }
+    .show-answer {
+      background-color: #f78fb3;
+    }
+    .show-answer:hover {
+      background-color: #e667a3;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>عبارات الصلاة الإسلامية</h1>
-        
-        <div class="phrase-box">
-            <div class="arabic" id="arabic-phrase">انقر على الزر أدناه لعرض عبارة</div>
-            <div class="translation" id="english-translation"></div>
-        </div>
-        
-        <div class="buttons">
-            <button id="new-phrase">عرض عبارة جديدة</button>
-            <button id="show-translation" class="show-answer">إظهار الترجمة</button>
-        </div>
+  <div class="container">
+    <h1>Islamic Prayer Phrases</h1>
+
+    <div class="phrase-box">
+      <div class="arabic" id="arabic-phrase">Click the button below to show a phrase</div>
+      <div class="translation" id="english-translation"></div>
     </div>
 
-    <script>
-      const phrases = [
-        // سورة الفاتحة
-        { arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", english: "In the name of Allah, the Most Gracious, the Most Merciful" },
-        { arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", english: "All praise is due to Allah, Lord of the Worlds" },
-        { arabic: "الرَّحْمَٰنِ الرَّحِيمِ", english: "The Most Gracious, the Most Merciful" },
-        { arabic: "مَالِكِ يَوْمِ الدِّينِ", english: "Master of the Day of Judgment" },
-        { arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", english: "You alone we worship, and You alone we ask for help" },
-        { arabic: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", english: "Guide us on the Straight Path" },
-        { arabic: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", english: "The path of those You have blessed—not those who have earned Your anger or gone astray" },
+    <div class="buttons">
+      <button id="new-phrase">Show New Phrase</button>
+      <button id="show-translation" class="show-answer">Show Translation</button>
+    </div>
+  </div>
 
-        // ركوع وسجود
-        { arabic: "سُبْحَانَ رَبِّيَ الْعَظِيمِ", english: "Glory is to my Lord, the Most Great" },
-        { arabic: "سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ", english: "Allah hears the one who praises Him" },
-        { arabic: "رَبَّنَا وَلَكَ الْحَمْدُ", english: "Our Lord, to You is due all praise" },
-        { arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى", english: "Glory is to my Lord, the Most High" },
-
-        // التشهد
-        { arabic: "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ", english: "All greetings, prayers, and good things are for Allah" },
-        { arabic: "السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ", english: "Peace be upon you, O Prophet, and the mercy of Allah and His blessings" },
-        { arabic: "السَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللَّهِ الصَّالِحِينَ", english: "Peace be upon us and upon the righteous servants of Allah" },
-        { arabic: "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ", english: "I bear witness that there is no god but Allah, and I bear witness that Muhammad is His servant and Messenger" },
-
-        // الصلاة الإبراهيمية
-        { arabic: "اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ", english: "O Allah, send blessings upon Muhammad and upon the family of Muhammad" },
-        { arabic: "كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ", english: "As You sent blessings upon Ibrahim and upon the family of Ibrahim" },
-        { arabic: "وَبَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ", english: "And bless Muhammad and the family of Muhammad" },
-        { arabic: "كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ فِي الْعَالَمِينَ إِنَّكَ حَمِيدٌ مَجِيدٌ", english: "As You blessed Ibrahim and the family of Ibrahim in the worlds. Verily, You are Praiseworthy, Glorious" },
-
-        // ختام الصلاة
-        { arabic: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ", english: "Peace and mercy of Allah be upon you" }
+  <script>
+    const phrases = [
+      { arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", english: "In the name of Allah, the Most Gracious, the Most Merciful" },
+      { arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", english: "All praise is due to Allah, Lord of the Worlds" },
+      { arabic: "الرَّحْمَٰنِ الرَّحِيمِ", english: "The Most Gracious, the Most Merciful" },
+      { arabic: "مَالِكِ يَوْمِ الدِّينِ", english: "Master of the Day of Judgment" },
+      { arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", english: "You alone we worship and You alone we ask for help" },
+      { arabic: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", english: "Guide us on the Straight Path" },
+      { arabic: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ", english: "The path of those who have received Your grace" },
+      { arabic: "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", english: "Not the path of those who have brought down wrath upon themselves, nor of those who have gone astray" },
+      { arabic: "الله أكبر", english: "Allah is the Greatest" },
+      { arabic: "سبحان ربي العظيم", english: "Glory is to my Lord, the Most Great" },
+      { arabic: "سمع الله لمن حمده", english: "Allah hears the one who praises Him" },
+      { arabic: "ربنا ولك الحمد", english: "Our Lord, to You belongs all praise" },
+      { arabic: "سبحان ربي الأعلى", english: "Glory is to my Lord, the Most High" },
+      { arabic: "رب اغفر لي", english: "My Lord, forgive me" },
+      { arabic: "التحيات لله والصلوات والطيبات", english: "All greetings, prayers, and good things are for Allah" },
+      { arabic: "السلام عليك أيها النبي ورحمة الله وبركاته", english: "Peace be upon you, O Prophet, and the mercy of Allah and His blessings" },
+      { arabic: "السلام علينا وعلى عباد الله الصالحين", english: "Peace be upon us and upon the righteous servants of Allah" },
     ];
 
-    // باقي السكربت يبقى كما هو:
-    const arabicPhraseElement = document.getElementById('arabic-phrase');
-    const englishTranslationElement = document.getElementById('english-translation');
-    const newPhraseButton = document.getElementById('new-phrase');
-    const showTranslationButton = document.getElementById('show-translation');
+    const arabicPhrase = document.getElementById('arabic-phrase');
+    const englishTranslation = document.getElementById('english-translation');
+    const newPhraseBtn = document.getElementById('new-phrase');
+    const showTranslationBtn = document.getElementById('show-translation');
 
-    function displayRandomPhrase() {
-        const randomIndex = Math.floor(Math.random() * phrases.length);
-        const selectedPhrase = phrases[randomIndex];
-
-        arabicPhraseElement.textContent = selectedPhrase.arabic;
-        englishTranslationElement.textContent = selectedPhrase.english;
-        englishTranslationElement.style.display = 'none';
-    }
-
-    newPhraseButton.addEventListener('click', displayRandomPhrase);
-
-    showTranslationButton.addEventListener('click', function() {
-        if (englishTranslationElement.style.display === 'none' || englishTranslationElement.style.display === '') {
-            englishTranslationElement.style.display = 'block';
-            showTranslationButton.textContent = 'إخفاء الترجمة';
-        } else {
-            englishTranslationElement.style.display = 'none';
-            showTranslationButton.textContent = 'إظهار الترجمة';
-        }
+    newPhraseBtn.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * phrases.length);
+      const phrase = phrases[randomIndex];
+      arabicPhrase.textContent = phrase.arabic;
+      englishTranslation.textContent = phrase.english;
+      englishTranslation.style.display = 'none';
     });
 
-    displayRandomPhrase();
-    </script>
+    showTranslationBtn.addEventListener('click', () => {
+      englishTranslation.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
